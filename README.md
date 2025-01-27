@@ -39,7 +39,7 @@ BondhuBot is a chatbot-based system developed to address the growing mental heal
 ---
 
 ## Uses:
-The web app is live at [netlify](https://bondhubot.netlify.app/)
+The web app is live at [https://bondhubot.netlify.app/](https://bondhubot.netlify.app/)
 
 
 ## Installation and Setup
