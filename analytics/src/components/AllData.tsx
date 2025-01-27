@@ -12,6 +12,7 @@ const AllData = () => {
         severe: 0,
         extreme: 0
     }
+    
     for(let i = 0; i < scores.length; ++i){
         const s = scores[i];
         if(s > 40) d.extreme ++;

@@ -29,7 +29,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ data }) => {
            
             pointRadius: 0, // Show dot only at the highlightIndex
     
-            tension: 0.1, // Smooth the line
+            tension: 0.4, // Smooth the line
           },
         ],
       },

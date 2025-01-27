@@ -3,14 +3,18 @@ import { trpc } from "../trpc";
 import { TRPCClientError } from "@trpc/client";
 import { ConversationSchema } from "../../../backend/models/Conversation";
 import { castDraft } from "immer";
+import { SingleData } from "../types/cleanConversation";
+import { cleanData } from "../utils/cleanData";
 
 interface CoreState {
   conversations: ConversationSchema[];
+  cleanData: SingleData[];
   status: "success" | "idle" | "failed" | "loading";
 }
 
 const initialState: CoreState = {
   conversations: [],
+  cleanData: [],
   status: "idle",
 };
 
@@ -46,8 +50,15 @@ const coreSlice = createSlice({
         state.status = "failed";
       })
       .addCase(fetchAllConversations.fulfilled, (state, action: PayloadAction<ConversationSchema[]>) => {
-        state.status = "success";
-        state.conversations = castDraft(action.payload);
+        try {
+          state.conversations = castDraft(action.payload);
+          state.cleanData = cleanData(state.conversations);
+          state.status = "success";
+        } catch (error) {
+          console.log(error);
+          state.status = "failed";
+        }
+        
       });
   },
 });

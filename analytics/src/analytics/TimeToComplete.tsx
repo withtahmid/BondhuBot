@@ -1,59 +1,51 @@
-import { useAppSelector } from "../store";
-import BarChart from "./BarChart";
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { useAppSelector } from '../store';
+// import { useAppSelector } from './hooks';
 
-const ScoreAvg = () => {
-  const conversations = useAppSelector(state => state.core.conversations);
-  const timeData = new Array(21).fill(0);
-  let cnt = 0;
-  conversations.filter(c => c.isFinished === true)
-    .forEach(c => {
-      cnt++;
-      for (let i = 0; i < 21; i++) {
-        timeData[i] += Math.min(60, ((c.scores[i].endTime - c.scores[i].startTime) / 1000));
-        // data[i] = i;
-      }
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
+const AvgTimeToCompleteChart: React.FC = () => {
+    const data = useAppSelector((state) => state.core.cleanData);
+
+    const times = {
+        Male: { total: 0, count: 0 },
+        Female: { total: 0, count: 0 },
+    };
+
+    data.forEach(item => {
+        if (item.demographicInfo.Gender === 'Male') {
+            times.Male.total += item.timeToComplete;
+            times.Male.count++;
+        } else {
+            times.Female.total += item.timeToComplete;
+            times.Female.count++;
+        }
     });
 
-  const scoreData = new Array(21).fill(0);
-  conversations.filter(c => c.isFinished)
-    .forEach(c => {
-      for (let i = 0; i < 21; i++) {
-        scoreData[i] += c.scores[i].score;
-      }
-    });
+    const avgTimeMale = times.Male.total / times.Male.count || 0;
+    const avgTimeFemale = times.Female.total / times.Female.count || 0;
 
-  for (let i = 0; i < 21; i++) {
-    timeData[i] /= cnt;
-    scoreData[i] /= cnt;
-  }
-  const data = timeData;
-    const labels = data.map((_, index) => `${index + 1}`);
-
-    // Generate background and border colors dynamically
-    const backgroundColors = data.map(() => "rgba(75, 192, 192, 0.5)");
-    const borderColors = data.map(() => "rgba(75, 192, 192, 1)");
-
-    const barChartData = {
-        labels: labels, // Labels for the bars
+    const chartData = {
+        labels: ['Male', 'Female'],
         datasets: [
             {
-                label: "Data Values",
-                data: data,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
-                borderWidth: 1,
+                label: 'Average Time to Complete (Minutes)',
+                data: [avgTimeMale, avgTimeFemale],
+                backgroundColor: ['#42a5f5', '#f48fb1'],
             },
         ],
     };
 
-    const barChartOptions = {
+    const options = {
         responsive: true,
         plugins: {
             legend: {
                 position: "top" as const,
                 labels: {
                     font: {
-                        size: 40,
+                        size: 40
                     },
                     color: 'black' // Ensure the legend text is black
                 }
@@ -61,7 +53,7 @@ const ScoreAvg = () => {
             tooltip: {
                 enabled: true,
                 bodyFont: {
-                    size: 40,
+                    size: 40
                 },
                 callbacks: {
                     labelColor: function(context) {
@@ -80,15 +72,15 @@ const ScoreAvg = () => {
             x: {
                 title: {
                     display: true,
-                    text: "Question Number",
+                    text: "Gender",
                     font: {
-                        size: 40,
+                        size: 40
                     },
                     color: 'black' // Ensure the x-axis title is black
                 },
                 ticks: {
                     font: {
-                        size: 40,
+                        size: 40
                     },
                     color: 'black' // Ensure the x-axis ticks are black
                 }
@@ -96,16 +88,16 @@ const ScoreAvg = () => {
             y: {
                 title: {
                     display: true,
-                    text: "Average Time spent (Seconds)",
+                    text: "Average Time (Minutes)",
                     font: {
-                        size: 40,
+                        size: 40
                     },
                     color: 'black' // Ensure the y-axis title is black
                 },
                 ticks: {
                     beginAtZero: true,
                     font: {
-                        size: 40,
+                        size: 40
                     },
                     color: 'black' // Ensure the y-axis ticks are black
                 }
@@ -114,10 +106,10 @@ const ScoreAvg = () => {
     };
 
     return (
-        <div style={{ width: "80%", margin: "auto" }}>
-            <BarChart data={barChartData} options={barChartOptions} />
+        <div>
+            <Bar data={chartData} options={options} />
         </div>
     );
 };
 
-export default ScoreAvg;
+export default AvgTimeToCompleteChart;
