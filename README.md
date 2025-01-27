@@ -39,14 +39,14 @@ BondhuBot is a chatbot-based system developed to address the growing mental heal
 ---
 
 ## Uses:
-The web app is live at `https://bondhubot.netlify.app/`
+The web app is live at [netlify](https://bondhubot.netlify.app/)
 
 
 ## Installation and Setup
 
 1. **Clone the repository**:
 ```bash   
-    git clone https://github.com/yourusername/BondhuBot.git   
+    https://github.com/withtahmid/BondhuBot   
     cd BondhuBot
 ```
 2. **Install dependencies**:
@@ -133,4 +133,4 @@ The project was built from the ground up by:
 
 ---
 
-For any queries or suggestions, please contact us at [your email here].
+For any queries or suggestions, please contact us at tahmid.rakib@northsouth.edu.
