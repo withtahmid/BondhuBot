@@ -4,7 +4,11 @@ BondhuBot is a chatbot-based system developed to address the growing mental heal
 
 ---
 
+## What user knows after the conversation?
+![Result](./readme-screenshots/result.jpg)
 
+
+---
 ## Features
 
 - **Early Depression Detection**: Utilizes the Beck Depression Inventory (BDI) to assess and classify depression levels (mild, moderate, or severe).
@@ -83,6 +87,28 @@ The web app is live at [https://bondhubot.netlify.app/](https://bondhubot.netlif
 - The chatbot guides users through a set of 21 questions derived from the Beck Depression Inventory.
 - Responses are analyzed, and a personalized report is generated, highlighting the user's mental health condition.
 
+---
+
+## Screenshots
+1. **Putting Demographic Info**
+   ![Demographic Information](./readme-screenshots/demographic.jpg)
+
+2. **Privacy Acknowledgements**
+    ![Privacy](./readme-screenshots/privacy.jpg)
+
+3. **Conversation**
+    ![Conversation](./readme-screenshots/conversation.jpg)
+
+
+4. **Conversation**
+    ![Conversation](./readme-screenshots/conversation.jpg)
+
+5. **Result**
+    ![Result](./readme-screenshots/result.jpg)
+
+6. **User Feedback**
+    ![Feedback](./readme-screenshots/feedback.jpg)
+   
 ---
 
 ## Contributing
