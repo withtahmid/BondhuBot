@@ -99,14 +99,10 @@ The web app is live at [https://bondhubot.netlify.app/](https://bondhubot.netlif
 3. **Conversation**
     ![Conversation](./readme-screenshots/conversation.jpg)
 
-
-4. **Conversation**
-    ![Conversation](./readme-screenshots/conversation.jpg)
-
-5. **Result**
+4. **Result**
     ![Result](./readme-screenshots/result.jpg)
 
-6. **User Feedback**
+5. **User Feedback**
     ![Feedback](./readme-screenshots/feedback.jpg)
    
 ---
